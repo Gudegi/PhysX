@@ -1,5 +1,21 @@
 # NVIDIA PhysX
 
+# PhysX 5.8 for macOS ARM64
+
+This fork adds macOS ARM64 support to PhysX 5.8 for CPU-based physics simulation on Apple Silicon.
+
+It includes:
+- macOS ARM64 build support
+- ARM FPU/NEON compatibility fixes
+- A macOS ARM64 serialization platform ID
+- CPU physics smoke tests
+
+Static libraries can be built using CMake and Ninja.
+
+[Get started: macOS build instructions](physx/documentation/platformreadme/mac/README_MAC.md)
+
+---
+
 <details>
 <summary>Copyright & License</summary>
 

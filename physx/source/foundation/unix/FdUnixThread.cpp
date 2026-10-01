@@ -76,7 +76,11 @@ class ThreadImpl
 	volatile int32_t state;
 
 	pthread_t thread;
+#if PX_APPLE_FAMILY
+	uint64_t tid;
+#else
 	pid_t tid;
+#endif
 
 	uint32_t affinityMask;
 	const char* name;
@@ -92,7 +96,7 @@ static void setTid(ThreadImpl& threadImpl)
 // query TID
 // AM: TODO: neither of the below are implemented
 #if PX_APPLE_FAMILY
-	threadImpl.tid = syscall(SYS_gettid);
+	pthread_threadid_np(NULL, &threadImpl.tid);
 #elif PX_EMSCRIPTEN
 	threadImpl.tid = pthread_self();
 #else

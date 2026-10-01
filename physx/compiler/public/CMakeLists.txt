@@ -85,6 +85,12 @@ ENDIF()
 ADD_SUBDIRECTORY(${PHYSX_ROOT_DIR}/source/compiler/cmake ${CMAKE_CURRENT_BINARY_DIR}/sdk_source_bin)
 MESSAGE("Added PhysX")
 
+OPTION(PX_BUILD_PLATFORM_TESTS "Build headless CPU platform validation" OFF)
+IF(PX_BUILD_PLATFORM_TESTS)
+    ENABLE_TESTING()
+    ADD_SUBDIRECTORY(${PHYSX_ROOT_DIR}/tests/platform ${CMAKE_CURRENT_BINARY_DIR}/platform_tests)
+ENDIF()
+
 IF(PX_GENERATE_GPU_PROJECTS OR PX_GENERATE_GPU_PROJECTS_ONLY)
 	# Add PhysX SDK Gpu Source code to solution
 	ADD_SUBDIRECTORY(${PHYSX_ROOT_DIR}/source/compiler/cmakegpu ${CMAKE_CURRENT_BINARY_DIR}/sdk_gpu_source_bin)
@@ -105,4 +111,3 @@ IF(PX_BUILDSNIPPETS)
 
 	MESSAGE("Added Snippets")
 ENDIF()
-
