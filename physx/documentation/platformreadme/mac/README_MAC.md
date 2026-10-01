@@ -5,7 +5,7 @@ The validated build configurations are `checked` and `release`.
 
 ## Location of Binaries:
 
-* SDK libraries: `build/macos-arm64-<config>/bin/mac.arm64/<config>`
+* SDK libraries: `physx/bin/mac.arm64/<config>`
 * Platform test: `build/macos-arm64-<config>/platform_tests/physx_platform_smoke`
 
 Paths are relative to the repository root and use the build settings below.
@@ -38,6 +38,7 @@ physx_build="$PWD/build/macos-arm64-$physx_config"
 cmake -S physx/compiler/public -B "$physx_build" -G Ninja \
   -DPHYSX_ROOT_DIR="$PWD/physx" \
   -DTARGET_BUILD_PLATFORM=mac \
+  -DPX_OUTPUT_ARCH=arm \
   -DCMAKE_OSX_ARCHITECTURES=arm64 \
   -DCMAKE_BUILD_TYPE="$physx_config" \
   -DPX_GENERATE_STATIC_LIBRARIES=ON \
@@ -46,8 +47,8 @@ cmake -S physx/compiler/public -B "$physx_build" -G Ninja \
   -DPX_BUILDSNIPPETS=OFF \
   -DPX_BUILDPVDRUNTIME=OFF \
   -DPX_BUILD_PLATFORM_TESTS=ON \
-  -DPX_OUTPUT_LIB_DIR="$physx_build" \
-  -DPX_OUTPUT_BIN_DIR="$physx_build" \
+  -DPX_OUTPUT_LIB_DIR="$PWD/physx" \
+  -DPX_OUTPUT_BIN_DIR="$PWD/physx" \
   -DCMAKE_INSTALL_PREFIX="$PWD/install/macos-arm64-$physx_config"
 ```
 
